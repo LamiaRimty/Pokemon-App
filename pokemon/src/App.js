@@ -8,13 +8,16 @@ import axios from 'axios';
 function App() {
  const [pokemon, setPokemon] = useState([])
  const [currentPageUrl,setCurrentPageUrl]=useState(["https://pokeapi.co/api/v2/pokemon" ])
-
+ const [nextPageUrl,setNextPageUrl] =useState()
+ const [prevPageUrl,setPrevPageUrl]=useState()
 
 useEffect(()=>{
   axios.get(currentPageUrl).then(res=>{
+    setNextPageUrl(res.data.next)
+    setNextPageUrl(res.data.next)
     setPokemon(res.data.results.map(p=>p.name))
   })
-},[currentPageUrl])
+},[currentPageUrl]) //every time reget pokemon,evry time go to different page
 
  return(
     <PokemonList pokemon={pokemon}/>  //pass pokemon to pokemonList it can render our pokemon
