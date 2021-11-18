@@ -33,7 +33,14 @@ return()=> cancel()
 },[currentPageUrl]) 
 
 
+//our pagination comp going to use these func
+function gotoNextPage(){
+  setCurrentPageUrl(nextPageUrl)
+}
 
+function gotoPrevPage(){
+   setCurrentPageUrl(prevPageUrl)
+}
 
 if (loading) return "Loading...."
  
