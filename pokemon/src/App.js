@@ -13,14 +13,30 @@ function App() {
  const [loading,setLoading]=useState(true)
 
 useEffect(()=>{
+  //req start
+  setLoading(true)
+  let cancel 
+
   axios.get(currentPageUrl).then(res=>{
+    //req completes
     setLoading(false)
     setNextPageUrl(res.data.next)
     setPrevPageUrl(res.data.next)
     setPokemon(res.data.results.map(p=>p.name))
   })
-},[currentPageUrl]) //every time reget pokemon,evry time go to different page
 
+
+//aplicn never loads old data //cancel prev req make new req.Finishes after new req
+//every time reget pokemon,evry time go to different page
+
+return()=> cancel()    
+},[currentPageUrl]) 
+
+
+
+
+if (loading) return "Loading...."
+ 
  return(
     <PokemonList pokemon={pokemon}/>  //pass pokemon to pokemonList it can render our pokemon
  );
