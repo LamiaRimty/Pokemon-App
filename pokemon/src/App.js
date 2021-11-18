@@ -1,6 +1,7 @@
 
 import React ,{useState,useEffect} from 'react';
 import PokemonList from './PokemonList';
+import Pagination from './Pagination';
 import axios from 'axios';
 
  
@@ -45,8 +46,17 @@ function gotoPrevPage(){
 if (loading) return "Loading...."
  
  return(
-    <PokemonList pokemon={pokemon}/>  //pass pokemon to pokemonList it can render our pokemon
- );
+    //pass pokemon to pokemonList it can render our pokemon
+   //put then inside of a fragment just an empty HTML element.That means we rendering both things
+   <>
+    <PokemonList pokemon={pokemon}/> 
+    <Pagination
+      gotoNextPage={gotoNextPage}
+      gotoPrevPage={gotoPrevPage}
+    />
+  </>
+ 
+    );
 }
 
 export default App;
